@@ -73,57 +73,10 @@ npm run dev
 
 ## Visuals
 ### Role-gated transaction recording
-```mermaid
-flowchart LR
-  Dealer[Car Dealer] --> NewCar[New Car Record]
-  Maint[Car Maintenance] --> NewMaint[New Car Maintenance Record]
-  Trade[Second Hand Car] --> TradeRec[New Second Hand Car Trade Record]
-  NewCar --> Validate[Validate role]
-  NewMaint --> Validate
-  TradeRec --> Validate
-  Validate --> Chain[Blockchain]
-  Buyer[Buyer / Seller] --> History[View Car History]
-  Chain --> History
-  History --> Buyer
-```
-This flow shows each role submitting its transaction type; the contract enforces the role check before writing to chain, and anyone can read history.
+![Role-gated transaction recording](docs/role-gated-transaction.png)
 
 ### Role assignment
-```mermaid
-flowchart LR
-  SysAdmin[System Administrator] --> NewRole[New Role]
-  NewRole --> AdminRole[System Administrator role]
-  NewRole --> DealerRole[Car Dealer role]
-  NewRole --> MaintRole[Car Maintenance role]
-  NewRole --> TradeRole[Second Hand Car role]
-  AdminRole -.-> RoleBox[Role]
-  DealerRole -.-> RoleBox
-  MaintRole -.-> RoleBox
-  TradeRole -.-> RoleBox
-  RoleBox --> Chain[Blockchain]
-```
-The deployer (admin) assigns roles; those roles gate access to contract methods.
-
-### High-level app flow
-```mermaid
-flowchart LR
-  Login[Log In] --> Register[Register]
-  Register --> Users[(Users)]
-  Login --> Buy[Buy]
-  Login --> Sell[Sell]
-  Login --> Log[Log]
-  Register --> Cars[(Cars)]
-  Cars --> Buy
-  Cars --> Sell
-  Cars --> Log
-  Log --> Logs[(Logs)]
-  Buy --> View[View]
-  Sell --> View
-  Log --> View
-  View --> History[View transaction history]
-  History --> Chain[Blockchain]
-```
-This summarizes user entry, car records, logs, and viewing transaction history backed by the blockchain.
+![Role assignment flow](docs/role-assignment.png)
 
 ## Tests
 Contract tests (Ganache in-memory):
