@@ -166,3 +166,4 @@ This compiles contracts and runs the suite against the local chain. Start Ganach
 ## Notes
 - Routes are defined in `routes.js`.
 - Provider and mnemonic are injected via env vars; do not commit secrets.
+- Find the project report and the project presentation in /ProjectReport
